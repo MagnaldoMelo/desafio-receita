@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /app
+    command: "java -jar target/SpringApp-0.0.1-SNAPSHOT.jar"
+    volumes:
+      - ./data:/app/data
