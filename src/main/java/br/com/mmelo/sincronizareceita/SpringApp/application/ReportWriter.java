@@ -22,7 +22,7 @@ public class ReportWriter {
     }
 
     public void write() throws IOException {
-        String filename = outputPath + "/" + "report-" + Instant.now().getEpochSecond() + ".result.dat";
+        String filename = outputPath + "/" + "report-" + Instant.now().getEpochSecond() + ".result.data";
         String inforReports = "";
 
         for(CustomerResult customerResult: this.customerResultList){

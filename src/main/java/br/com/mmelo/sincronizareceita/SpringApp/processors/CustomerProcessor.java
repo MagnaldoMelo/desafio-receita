@@ -7,6 +7,7 @@ import br.com.mmelo.sincronizareceita.SpringApp.enums.StatusResult;
 import br.com.mmelo.sincronizareceita.SpringApp.layouts.CustomerLayout;
 import br.com.mmelo.sincronizareceita.SpringApp.layouts.CustomerResultLayout;
 import br.com.mmelo.sincronizareceita.SpringApp.services.ReceitaService;
+import br.com.mmelo.sincronizareceita.SpringApp.utils.FunctionString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,12 +37,13 @@ public class CustomerProcessor {
                         CustomerLayout customerLayout = new CustomerLayout();
 
                         if(customerLayout.validate(l)){
+                            log.info("Processando linha: " + l);
                             Customer customer = customerLayout.read(l);
                             CustomerResult customerResult = customer.getCustomerResult(customer);
 
                             ReceitaService receitaService = new ReceitaService();
-                            Boolean transmitido = receitaService.atualizarConta(customerResult.getAgencia(),
-                                    customerResult.getConta(), customerResult.getSaldo(),
+                            Boolean transmitido = receitaService.atualizarConta(FunctionString.onlyNumbers(customerResult.getAgencia()),
+                                    FunctionString.onlyNumbers(customerResult.getConta()), customerResult.getSaldo(),
                                     customerResult.getStatus().toString());
 
                             if (transmitido){
