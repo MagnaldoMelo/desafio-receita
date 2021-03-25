@@ -1,4 +1,4 @@
-package br.com.mmelo.sincronizareceita.SpringApp.layouts;
+package br.com.mmelo.sincronizareceita.SpringApp;
 
 /**
  * @author magnaldo_melo<magnaldo.melo@gmail.com>

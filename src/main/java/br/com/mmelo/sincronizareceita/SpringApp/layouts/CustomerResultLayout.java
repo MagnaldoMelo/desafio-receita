@@ -1,9 +1,9 @@
-package br.com.mmelo.sincronizareceita.SpringApp.layouts;
+package br.com.mmelo.sincronizareceita.SpringApp;
 
 import br.com.mmelo.sincronizareceita.SpringApp.entities.CustomerResult;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.Status;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.StatusResult;
-import br.com.mmelo.sincronizareceita.SpringApp.utils.FunctionString;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author magnaldo_melo<magnaldo.melo@gmail.com>
@@ -16,17 +16,21 @@ public class CustomerResultLayout extends AbstractLayout<CustomerResult>{
     public static final int FIELD_STATUS = 3;
     public static final int FIELD_STATUS_RESULT = 4;
 
+    @Autowired
+    private CustomerResult customerResult;
+
+    public CustomerResultLayout(){}
+
     @Override
     public CustomerResult read(String line) {
         String[] fields = line.split(FIELD_DELIMITER);
-        CustomerResult customerResult = new CustomerResult();
-        customerResult.setAgencia(fields[FIELD_AGENCIA].replaceAll(" ", ""));
-        customerResult.setConta(fields[FIELD_CONTA].replaceAll(" ", ""));
-        customerResult.setSaldo(Double.parseDouble(fields[FIELD_SALDO].replace("," , ".").replaceAll(" ", "")));
-        customerResult.setStatus(Status.valueOf(fields[FIELD_STATUS].replaceAll(" ", "")));
-        customerResult.setStatusResult(StatusResult.valueOf(fields[FIELD_STATUS_RESULT].replaceAll(" ", "")));
+        this.customerResult.setAgencia(fields[FIELD_AGENCIA].replaceAll(" ", ""));
+        this.customerResult.setConta(fields[FIELD_CONTA].replaceAll(" ", ""));
+        this.customerResult.setSaldo(Double.parseDouble(fields[FIELD_SALDO].replace("," , ".").replaceAll(" ", "")));
+        this.customerResult.setStatus(Status.valueOf(fields[FIELD_STATUS].replaceAll(" ", "")));
+        this.customerResult.setStatusResult(StatusResult.valueOf(fields[FIELD_STATUS_RESULT].replaceAll(" ", "")));
 
-        return customerResult;
+        return this.customerResult;
     }
 
     @Override

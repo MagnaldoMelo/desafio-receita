@@ -1,17 +1,16 @@
-package br.com.mmelo.sincronizareceita.SpringApp.layouts;
+package br.com.mmelo.sincronizareceita.SpringApp;
 
 import br.com.mmelo.sincronizareceita.SpringApp.entities.Customer;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.Status;
-import br.com.mmelo.sincronizareceita.SpringApp.enums.StatusResult;
-import br.com.mmelo.sincronizareceita.SpringApp.utils.FunctionString;
 import lombok.extern.slf4j.Slf4j;
-
-import java.math.BigDecimal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author magnaldo_melo<magnaldo.melo@gmail.com>
  */
 @Slf4j
+@Component
 public class CustomerLayout extends AbstractLayout<Customer> {
 
     public static final int FIELD_AGENCIA = 0;
@@ -19,16 +18,20 @@ public class CustomerLayout extends AbstractLayout<Customer> {
     public static final int FIELD_SALDO = 2;
     public static final int FIELD_STATUS = 3;
 
+    @Autowired
+    private Customer customer;
+
+    public CustomerLayout(){}
+
     @Override
     public Customer read(String line) {
         String[] fields = line.split(FIELD_DELIMITER);
-        Customer customer = new Customer();
-        customer.setAgencia(fields[FIELD_AGENCIA].replaceAll(" ", ""));
-        customer.setConta(fields[FIELD_CONTA].replaceAll(" ", ""));
-        customer.setSaldo(Double.parseDouble(fields[FIELD_SALDO].replace("," , ".").replaceAll(" ", "")));
-        customer.setStatus(Status.valueOf(fields[FIELD_STATUS].replaceAll(" ", "")));
+        this.customer.setAgencia(fields[FIELD_AGENCIA].replaceAll(" ", ""));
+        this.customer.setConta(fields[FIELD_CONTA].replaceAll(" ", ""));
+        this.customer.setSaldo(Double.parseDouble(fields[FIELD_SALDO].replace("," , ".").replaceAll(" ", "")));
+        this.customer.setStatus(Status.valueOf(fields[FIELD_STATUS].replaceAll(" ", "")));
 
-        return customer;
+        return this.customer;
     }
 
     @Override
