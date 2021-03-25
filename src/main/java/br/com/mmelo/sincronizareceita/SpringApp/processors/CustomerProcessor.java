@@ -2,49 +2,54 @@ package br.com.mmelo.sincronizareceita.SpringApp.processors;
 
 import br.com.mmelo.sincronizareceita.SpringApp.entities.Customer;
 import br.com.mmelo.sincronizareceita.SpringApp.entities.CustomerResult;
-import br.com.mmelo.sincronizareceita.SpringApp.enums.Status;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.StatusResult;
 import br.com.mmelo.sincronizareceita.SpringApp.layouts.CustomerLayout;
-import br.com.mmelo.sincronizareceita.SpringApp.layouts.CustomerResultLayout;
 import br.com.mmelo.sincronizareceita.SpringApp.services.ReceitaService;
 import br.com.mmelo.sincronizareceita.SpringApp.utils.FunctionString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 @Slf4j
+@Component
 public class CustomerProcessor {
 
-    private String inputPath;
-    private List<CustomerResult> customerResultList;
+    public String inputP;
 
-    public CustomerProcessor(String inputPath, List<CustomerResult> customerResultList){
-        this.inputPath = inputPath;
-        this.customerResultList = customerResultList;
+    @Autowired
+    private CustomerLayout customerLayout;
+
+    @Autowired
+    private ReceitaService receitaService;
+
+    public CustomerProcessor(@Qualifier("inputP") String inputP){
+        this.inputP = inputP;
     }
 
-    public void process() throws IOException {
-        Files.list(Paths.get(this.inputPath)).filter(p -> p.toString().endsWith(".data")).forEach(p -> {
+    public List<CustomerResult> getProcess() throws IOException {
+        List<CustomerResult> customerResultList = new ArrayList<>();
+        log.error("this.inputP: " + this.inputP);
+        Files.list(Paths.get(this.inputP)).filter(p -> p.toString().endsWith(".data")).forEach(p -> {
             try {
                 Stream<String> lines = Files.lines(p);
                 lines.forEach(l -> {
                     try {
-                        CustomerLayout customerLayout = new CustomerLayout();
-
-                        if(customerLayout.validate(l)){
+                        if(this.customerLayout.validate(l)){
                             log.info("Processando linha: " + l);
-                            Customer customer = customerLayout.read(l);
+                            Customer customer = this.customerLayout.read(l);
                             CustomerResult customerResult = customer.getCustomerResult(customer);
 
-                            ReceitaService receitaService = new ReceitaService();
-                            Boolean transmitido = receitaService.atualizarConta(FunctionString.onlyNumbers(customerResult.getAgencia()),
+                            Boolean transmitido = this.receitaService.atualizarConta(FunctionString.onlyNumbers(customerResult.getAgencia()),
                                     FunctionString.onlyNumbers(customerResult.getConta()), customerResult.getSaldo(),
-                                    customerResult.getStatus().toString());
+                                    customerResult.getStatus().toString(), true);
 
                             if (transmitido){
                                 customerResult.setStatusResult(StatusResult.SUCCESS);
@@ -64,5 +69,6 @@ public class CustomerProcessor {
                 e.printStackTrace();
             }
         });
+        return customerResultList;
     }
 }

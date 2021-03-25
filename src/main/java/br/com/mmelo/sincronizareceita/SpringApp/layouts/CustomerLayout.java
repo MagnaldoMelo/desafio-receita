@@ -1,7 +1,8 @@
-package br.com.mmelo.sincronizareceita.SpringApp;
+package br.com.mmelo.sincronizareceita.SpringApp.layouts;
 
 import br.com.mmelo.sincronizareceita.SpringApp.entities.Customer;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.Status;
+import br.com.mmelo.sincronizareceita.SpringApp.layouts.AbstractLayout;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

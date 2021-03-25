@@ -1,16 +1,21 @@
 package br.com.mmelo.sincronizareceita.SpringApp.services;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author gabriel_stabel<gabriel_stabel@sicredi.com.br>
  */
+@Service
 public class ReceitaService {
 
     // Esta é a implementação interna do "servico" do banco central. Veja o código fonte abaixo para ver os formatos esperados pelo Banco Central neste cenário.
 
-    public boolean atualizarConta(String agencia, String conta, double saldo, String status)
+    public ReceitaService (){}
+
+    public boolean atualizarConta(String agencia, String conta, double saldo, String status, Boolean transmitir)
             throws RuntimeException, InterruptedException {
 
 
@@ -35,9 +40,12 @@ public class ReceitaService {
             return false;
         }
 
-        // Simula tempo de resposta do serviço (entre 1 e 5 segundos)
-        long wait = Math.round(Math.random() * 4000) + 1000;
-        Thread.sleep(wait);
+        //Inserido para evitar tempo de espera nos testes
+        if (transmitir) {
+            // Simula tempo de resposta do serviço (entre 1 e 5 segundos)
+            long wait = Math.round(Math.random() * 4000) + 1000;
+            Thread.sleep(wait);
+        }
 
         // Simula cenario de erro no serviço (0,1% de erro)
         long randomError = Math.round(Math.random() * 1000);

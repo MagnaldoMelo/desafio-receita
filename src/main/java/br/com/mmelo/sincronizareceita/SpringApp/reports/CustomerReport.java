@@ -1,15 +1,15 @@
 package br.com.mmelo.sincronizareceita.SpringApp.reports;
 
 import br.com.mmelo.sincronizareceita.SpringApp.entities.Customer;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-import java.io.Serializable;
+import org.springframework.stereotype.Component;
 
 /**
  * @author magnaldo_melo<magnaldo.melo@gmail.com>
  */
+@Component
 public class CustomerReport extends AbstractReport<Customer> {
+
+    public CustomerReport(){}
 
     @Override
     public String line(Customer customer) {

@@ -1,17 +1,17 @@
 package br.com.mmelo.sincronizareceita.SpringApp.layouts;
 
-import br.com.mmelo.sincronizareceita.SpringApp.CustomerResultLayout;
+import br.com.mmelo.sincronizareceita.SpringApp.SpringAppApplicationTest;
 import br.com.mmelo.sincronizareceita.SpringApp.entities.CustomerResult;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.Status;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.StatusResult;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(classes = {CustomerResultLayout.class, CustomerResult.class})
-public class CustomerResultLayoutTest {
+@DisplayName("Testes referentes a CustomerResultLayoutTest")
+public class CustomerResultLayoutTest extends SpringAppApplicationTest {
 
     @Autowired
     private CustomerResultLayout customerResultLayout;

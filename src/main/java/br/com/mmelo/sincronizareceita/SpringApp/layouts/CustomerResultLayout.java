@@ -1,14 +1,15 @@
-package br.com.mmelo.sincronizareceita.SpringApp;
+package br.com.mmelo.sincronizareceita.SpringApp.layouts;
 
 import br.com.mmelo.sincronizareceita.SpringApp.entities.CustomerResult;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.Status;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.StatusResult;
+import br.com.mmelo.sincronizareceita.SpringApp.layouts.AbstractLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author magnaldo_melo<magnaldo.melo@gmail.com>
  */
-public class CustomerResultLayout extends AbstractLayout<CustomerResult>{
+public class CustomerResultLayout extends AbstractLayout<CustomerResult> {
 
     public static final int FIELD_AGENCIA = 0;
     public static final int FIELD_CONTA = 1;

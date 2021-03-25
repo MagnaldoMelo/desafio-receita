@@ -1,4 +1,4 @@
-package br.com.mmelo.sincronizareceita.SpringApp.application;
+package br.com.mmelo.sincronizareceita.SpringApp.applications;
 
 import br.com.mmelo.sincronizareceita.SpringApp.entities.CustomerResult;
 import br.com.mmelo.sincronizareceita.SpringApp.reports.CustomerResultReport;

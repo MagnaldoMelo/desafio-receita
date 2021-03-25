@@ -1,11 +1,15 @@
 package br.com.mmelo.sincronizareceita.SpringApp.reports;
 
 import br.com.mmelo.sincronizareceita.SpringApp.entities.CustomerResult;
+import org.springframework.stereotype.Component;
 
 /**
  * @author magnaldo_melo<magnaldo.melo@gmail.com>
  */
+@Component
 public class CustomerResultReport extends AbstractReport<CustomerResult>{
+
+    public CustomerResultReport(){}
 
     @Override
     public String line(CustomerResult customerResult) {

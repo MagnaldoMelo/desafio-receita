@@ -4,6 +4,7 @@ import br.com.mmelo.sincronizareceita.SpringApp.enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
@@ -12,6 +13,7 @@ import java.io.Serializable;
  */
 @Data
 @NoArgsConstructor
+@Component
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
 

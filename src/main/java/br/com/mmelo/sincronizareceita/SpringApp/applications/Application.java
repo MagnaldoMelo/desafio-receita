@@ -1,4 +1,4 @@
-package br.com.mmelo.sincronizareceita.SpringApp.application;
+package br.com.mmelo.sincronizareceita.SpringApp.applications;
 
 import br.com.mmelo.sincronizareceita.SpringApp.entities.CustomerResult;
 import br.com.mmelo.sincronizareceita.SpringApp.processors.CustomerProcessor;
@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
