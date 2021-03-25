@@ -1,7 +1,6 @@
 package br.com.mmelo.sincronizareceita.SpringApp.applications;
 
 import br.com.mmelo.sincronizareceita.SpringApp.SpringAppApplicationTest;
-import br.com.mmelo.sincronizareceita.SpringApp.entities.Customer;
 import br.com.mmelo.sincronizareceita.SpringApp.entities.CustomerResult;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.Status;
 import br.com.mmelo.sincronizareceita.SpringApp.enums.StatusResult;
@@ -19,7 +18,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
